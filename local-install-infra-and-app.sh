@@ -1,5 +1,5 @@
 echo "🛺🛺🛺 install infrastructure ..."
-cd dailyfeed-insfrastructure
+cd dailyfeed-infrastructure
 source install-local.sh
 cd ..
 echo ""
