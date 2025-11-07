@@ -1,6 +1,15 @@
 # DailyFeed Installer
 
 DailyFeed 애플리케이션을 Kubernetes(kind) 클러스터에 설치하는 스크립트 모음입니다.
+<br/>
+
+## 이미지 버전
+사용가능한 이미지 버전은 다음과 같습니다.
+- main : 가장 최근의 안정적인 버전
+- cbt-{yyyyMMdd}-{번호} : 테스트 용도의 버전
+
+<br/>
+
 
 ## 설치 방법
 
