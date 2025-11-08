@@ -2,7 +2,7 @@ VERSION_ARG="$1"
 
 echo "🛺🛺🛺 install infrastructure (Hybrid Mode: Docker Compose + Kubernetes) ..."
 cd dailyfeed-infrastructure
-# source install-local.sh
+#source install-local.sh
 source install-local-hybrid.sh
 cd ..
 echo ""
