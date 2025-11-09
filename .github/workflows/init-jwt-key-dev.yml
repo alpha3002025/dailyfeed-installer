@@ -1,0 +1,63 @@
+name: Initialize JWT Key (Dev Environment)
+
+on:
+  workflow_dispatch:  # Manual trigger
+    inputs:
+      environment:
+        description: 'Target environment'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - staging
+          - prod
+
+jobs:
+  init-jwt-key:
+    runs-on: ubuntu-latest
+
+    environment: ${{ github.event.inputs.environment }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        working-directory: dailyfeed-infrastructure/scripts
+        run: |
+          pip install -r requirements.txt
+
+      - name: Initialize JWT Key
+        working-directory: dailyfeed-infrastructure/scripts
+        env:
+          MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
+          MYSQL_PORT: ${{ secrets.MYSQL_PORT }}
+          MYSQL_USERNAME: ${{ secrets.MYSQL_USERNAME }}
+          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+          MYSQL_SCHEMA: ${{ secrets.MYSQL_SCHEMA }}
+          JWT_KEY_ROTATION_HOURS: ${{ vars.JWT_KEY_ROTATION_HOURS || '24' }}
+          JWT_KEY_GRACE_PERIOD_HOURS: ${{ vars.JWT_KEY_GRACE_PERIOD_HOURS || '48' }}
+        run: |
+          python3 init-jwt-key.py
+
+      - name: Verify initialization
+        if: success()
+        run: |
+          echo "✅ JWT Key initialization completed successfully for ${{ github.event.inputs.environment }} environment"
+          echo "📊 Summary:"
+          echo "  - Environment: ${{ github.event.inputs.environment }}"
+          echo "  - Database: ${{ secrets.MYSQL_HOST }}"
+          echo "  - Schema: ${{ secrets.MYSQL_SCHEMA }}"
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "❌ JWT Key initialization failed for ${{ github.event.inputs.environment }} environment"
+          echo "Please check the logs above for details"

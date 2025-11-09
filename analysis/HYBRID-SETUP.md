@@ -66,7 +66,7 @@ cd ../dailyfeed-app-helm
 ### 인프라 상태 확인
 ```bash
 # Docker Compose 서비스 확인
-cd dailyfeed-infrastructure/docker/mysql-mongodb-redis
+cd dailyfeed-infrastructure/docker/local-hybrid
 docker-compose ps
 
 # 예상 출력: 모든 서비스가 Up 상태
@@ -165,14 +165,14 @@ cd ../dailyfeed-infrastructure
 ### 1. MongoDB 연결 오류
 ```bash
 # MongoDB 사용자 재생성
-cd dailyfeed-infrastructure/docker/mysql-mongodb-redis
+cd dailyfeed-infrastructure/docker/local-hybrid
 ./init-mongodb-users.sh
 ```
 
 ### 2. Docker Compose 서비스가 시작되지 않음
 ```bash
 # 로그 확인
-cd dailyfeed-infrastructure/docker/mysql-mongodb-redis
+cd dailyfeed-infrastructure/docker/local-hybrid
 docker-compose logs -f <service-name>
 
 # 예: MongoDB 로그
@@ -217,10 +217,10 @@ docker info | grep Memory
 ## 주요 파일 위치
 
 ### 인프라 설정
-- Docker Compose: `dailyfeed-infrastructure/docker/mysql-mongodb-redis/docker-compose.yaml`
+- Docker Compose: `dailyfeed-infrastructure/docker/local-hybrid/docker-compose.yaml`
 - Kind 클러스터 구성: `dailyfeed-infrastructure/kind/cluster-local-hybrid.yml`
 - 하이브리드 설치: `dailyfeed-infrastructure/install-local-hybrid.sh`
-- MongoDB 초기화: `dailyfeed-infrastructure/docker/mysql-mongodb-redis/init-mongodb-users.sh`
+- MongoDB 초기화: `dailyfeed-infrastructure/docker/local-hybrid/init-mongodb-users.sh`
 
 ### Kubernetes 리소스
 - ConfigMaps: `dailyfeed-infrastructure/helm/manifests/local/*-config-local.yaml`

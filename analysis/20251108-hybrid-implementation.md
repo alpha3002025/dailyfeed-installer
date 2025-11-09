@@ -61,7 +61,7 @@ KAFKA_PORT: "29092"                  # 변경: 9092
 5. Istio 및 모니터링 도구 설치
 
 #### MongoDB 사용자 초기화 스크립트
-**파일**: `dailyfeed-infrastructure/docker/mysql-mongodb-redis/init-mongodb-users.sh`
+**파일**: `dailyfeed-infrastructure/docker/local-hybrid/init-mongodb-users.sh`
 
 기능:
 - Docker Compose MongoDB에 접속
@@ -158,13 +158,13 @@ cd dailyfeed-infrastructure
 
 ### 인프라 재시작
 ```bash
-cd dailyfeed-infrastructure/docker/mysql-mongodb-redis
+cd dailyfeed-infrastructure/docker/local-hybrid
 docker-compose restart
 ```
 
 ### Docker Compose 인프라 로그 확인
 ```bash
-cd dailyfeed-infrastructure/docker/mysql-mongodb-redis
+cd dailyfeed-infrastructure/docker/local-hybrid
 
 # 전체 로그
 docker-compose logs -f
@@ -294,7 +294,7 @@ cd dailyfeed-infrastructure
 
 **해결방법**:
 ```bash
-cd dailyfeed-infrastructure/docker/mysql-mongodb-redis
+cd dailyfeed-infrastructure/docker/local-hybrid
 ./init-mongodb-users.sh
 ```
 
