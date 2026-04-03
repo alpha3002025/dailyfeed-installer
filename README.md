@@ -12,6 +12,17 @@ git clone --recurse-submodules https://github.com/alpha3002025/dailyfeed-install
 만약 실수로 git clone 만 한 상태에서 현재 프로젝트 내의 git 서브 모듈들을 clone 받으려면 다음과 같이 합니다.
 ```bash
 git submodule update --init --recursive
+
+## 그리고 다운받아진 서브모듈 각각에서 다음과 같이 main 브랜치로 체크아웃합니다.
+cd 서브모듈
+git checkout main
+
+## e.g.
+cd dailyfeed-app-helm
+git checkout main
+
+cd dailyfeed-infrastructure
+git checkout main
 ```
 
 <br/>
