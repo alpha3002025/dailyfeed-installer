@@ -3,6 +3,19 @@
 DailyFeed 애플리케이션을 Kubernetes(kind) 클러스터에 설치하는 스크립트 모음입니다.
 <br/>
 
+## clone
+```bash
+git clone --recurse-submodules https://github.com/alpha3002025/dailyfeed-installer
+```
+<br/>
+
+만약 실수로 git clone 만 한 상태에서 현재 프로젝트 내의 git 서브 모듈들을 clone 받으려면 다음과 같이 합니다.
+```bash
+git submodule update --init --recursive
+```
+
+<br/>
+
 ## 이미지 버전
 사용가능한 이미지 버전은 다음과 같습니다.
 - main : 가장 최근의 안정적인 버전
